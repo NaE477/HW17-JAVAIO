@@ -1,9 +1,11 @@
+import java.io.PrintWriter;
 import java.nio.file.Paths;
+import java.util.LinkedList;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         FileReaderUtil fileReaderUtil = new FileReaderUtil();
-        /*fileReaderUtil.printFile("src/main/java/List.txt");
+        fileReaderUtil.printFile("src/main/java/List.txt");
 
         System.out.println("-------------------------------\nEnd of raw file printing");
         System.out.println("-------------------------------\nSaving file content in a variable process starting:");
@@ -29,9 +31,18 @@ public class Main {
 
 
         Thread.sleep(2000);
-*/
+
         String biggestString = fileReaderUtil.findBiggestStringInFile("src/main/java/List.txt");
         System.out.println(biggestString);
+
+        System.out.println("-------------------------------\nEnd of finding biggest word in a file");
+        System.out.println("-------------------------------\nStarting reverse printing lines of a linked list:");
+
+
+        Thread.sleep(2000);
+
+        LinkedList<String> lines = fileReaderUtil.saveLinesToLinkedList("src/main/java/List.txt");
+        printListInReverse(lines);
     }
 
     public static String randomGenerator() {
@@ -40,5 +51,11 @@ public class Main {
             output.append((char) ((int) (Math.random() * (122 - 65) + 65)));
         }
         return output.append("\n").toString();
+    }
+
+    public static void printListInReverse(LinkedList<String> input) {
+        for (int i = input.size() - 1; i >= 0; i--) {
+            System.out.println(input.get(i));
+        }
     }
 }
